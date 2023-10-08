@@ -12,4 +12,12 @@
 /installer/installer-windows.generated.iss
 /cmake-build-debug/
 /.vs/
-/out/
+
+
+*.exe
+*.dll
+*.lib
+*.exp
+*.ilk
+*.pdb
+*.obj
