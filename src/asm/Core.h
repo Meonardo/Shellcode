@@ -1,22 +1,22 @@
 
 #include <windows.h>
-#include <Macros.h>
 
-UINT_PTR GetRIP( VOID );
+#include "Macros.h"
+
+UINT_PTR GetRIP(VOID);
 
 typedef struct {
+  struct {
+    WIN32_FUNC(system);
+    WIN32_FUNC(LoadLibraryA);
+  } Win32;
 
-    struct {
-        WIN32_FUNC( system );
-        WIN32_FUNC( LoadLibraryA );
-    } Win32; 
+  struct {
+    // Basics
+    HMODULE Kernel32;
+    HMODULE Ntdll;
 
-    struct {
-        // Basics
-        HMODULE     Kernel32;
-        HMODULE     Ntdll;
-
-        HMODULE     MSVCRT;
-    } Modules;
+    HMODULE MSVCRT;
+  } Modules;
 
 } INSTANCE, *PINSTANCE;

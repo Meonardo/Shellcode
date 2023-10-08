@@ -1,3 +1,3 @@
 #include <windows.h>
 
-UINT_PTR HashString( LPVOID String, UINT_PTR Length );
+UINT_PTR HashString(LPVOID String, UINT_PTR Length);

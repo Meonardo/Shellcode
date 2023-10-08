@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "macros.h": "c",
+        "windows.h": "c",
+        "winternl.h": "c",
+        "stdio.h": "c",
+        "winnt.h": "c"
+    }
+}
