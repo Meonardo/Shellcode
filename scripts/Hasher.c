@@ -1,11 +1,13 @@
 #include <ctype.h>
 #include <stdio.h>
 
-long Hash(char* String) {
+long Hash(char* string) {
   unsigned long Hash = 5381;
   int c;
 
-  while (c = *String++) Hash = ((Hash << 5) + Hash) + c;
+  while ((c = *string++)) {
+    Hash = ((Hash << 5) + Hash) + c;
+  }
 
   return Hash;
 }
@@ -20,9 +22,13 @@ void ToUpperString(char* temp) {
 }
 
 int main(int argc, char** argv) {
-  if (argc < 2) return 0;
+  if (argc < 2) 
+    return 0;
 
-  ToUpperString(argv[1]);
-  printf("\n[+] Hashed %s ==> 0x%x\n\n", argv[1], Hash(argv[1]));
+  for (int i = 1; i < argc; i++) {
+    ToUpperString(argv[i]);
+    printf("[+] Hashed %s ==> 0x%lx\n", argv[i], Hash(argv[i]));
+  }
+
   return 0;
 }
