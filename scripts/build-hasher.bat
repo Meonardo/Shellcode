@@ -8,7 +8,6 @@ call "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Bu
 
 cd /D %ROOT_DIR%
 
-clang.exe ^
--o %OUTPUT_DIR%\Hasher.exe ^
-%ROOT_DIR%\Hasher.c ^
--Wall
+cl.exe %ROOT_DIR%\Hasher.c ^
+/Fe%OUTPUT_DIR%\Hasher.exe ^
+/DUNICODE /D_UNICODE /DWIN32 /EHsc /nologo

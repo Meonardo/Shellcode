@@ -2,6 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Get shellcode",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "python ${workspaceFolder}\\scripts\\extract.py -f ${workspaceFolder}\\out\\Shellcode.exe -o ${workspaceFolder}\\out\\Shellcode.bin",
+            "cwd": "${cwd}"
+        },
+        {
             "name": "Launch Hasher.exe",
             "type": "cppvsdbg",
             "request": "launch",

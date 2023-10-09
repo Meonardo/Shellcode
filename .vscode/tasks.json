@@ -24,7 +24,7 @@
         }, 
         {
             "type": "cppbuild",
-            "label": "build Shellcode.exe",
+            "label": "build PE",
             "command": "build.bat",
             "args": [
                 "${workspaceFolder}",
