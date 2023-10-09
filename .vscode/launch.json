@@ -21,6 +21,18 @@
             "environment": [],
             "console": "integratedTerminal",
             "preLaunchTask": "build Hasher.exe"
+        },
+        {
+            "name": "Launch Example Winlogon",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\out\\winlogon_inject.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "build Winlogon"
         }
     ]
 }
