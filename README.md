@@ -6,7 +6,7 @@
 ### Status
 - [x] remove `makefile` add batch script;
 - [x] add Visual Studio Code tasks to build & extract shellcode;
-- [ ] add example to use the shellcode;
+- [x] add example to use the shellcode;
 
 ### Requirements
 - GNU toolset, please see [MinGW](https://www.mingw-w64.org/downloads/);
