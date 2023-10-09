@@ -5,5 +5,5 @@
 
 ### Status
 - [ ] remove `makefile` add `cmake` script;
-- [ ] change toolset from `mingw` to `msvc`;
+- [ ] change toolset from `mingw` to `clang`;
 - [ ] more to come...
