@@ -1,17 +1,17 @@
 #include "Macros.h"
 #include "Utils.h"
 
-SEC(text, B) UINT_PTR HashString(LPVOID String, UINT_PTR Length) {
+SEC(text, B) UINT_PTR HashString(LPVOID string, UINT_PTR length) {
   ULONG Hash = 5381;
-  PUCHAR Ptr = String;
+  PUCHAR Ptr = string;
 
   do {
     UCHAR character = *Ptr;
 
-    if (!Length) {
+    if (!length) {
       if (!*Ptr) break;
     } else {
-      if ((ULONG)(Ptr - (PUCHAR)String) >= Length) break;
+      if ((ULONG)(Ptr - (PUCHAR)string) >= length) break;
       if (!*Ptr) ++Ptr;
     }
 

@@ -6,7 +6,8 @@
         "stdio.h": "c",
         "winnt.h": "c",
         "win32.h": "c",
-        "core.h": "c"
+        "core.h": "c",
+        "utils.h": "c"
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"

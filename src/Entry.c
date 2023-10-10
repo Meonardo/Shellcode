@@ -2,26 +2,26 @@
 #include "Win32.h"
 
 SEC(text, B) VOID Entry(VOID) {
-  INSTANCE Instance = {0};
+  INSTANCE instance = {0};
 
-  Instance.Modules.kernel32 = LdrModulePeb(HASH_KERNEL32);
-  Instance.Modules.ntdll = LdrModulePeb(HASH_NTDLL);
+  instance.Modules.kernel32 = LdrModulePeb(HASH_KERNEL32);
+  instance.Modules.ntdll = LdrModulePeb(HASH_NTDLL);
 
-  if (Instance.Modules.kernel32 != NULL) {
+  if (instance.Modules.kernel32 != NULL) {
     // Load needed functions
-    Instance.Win32.LoadLibraryA =
-        LdrFunction(Instance.Modules.kernel32, 0xb7072fdb);
+    instance.Win32.LoadLibraryA =
+        LdrFunction(instance.Modules.kernel32, 0xb7072fdb);
 
     // Load needed Libraries
-    Instance.Modules.msvcrt =
-        Instance.Win32.LoadLibraryA(GET_SYMBOL("msvcrt"));
+    instance.Modules.msvcrt =
+        instance.Win32.LoadLibraryA(GET_SYMBOL("msvcrt"));
 
-    if (Instance.Modules.msvcrt != NULL) {
-      Instance.Win32.system =
-          LdrFunction(Instance.Modules.msvcrt, 0xcff4a7ca);
+    if (instance.Modules.msvcrt != NULL) {
+      instance.Win32.system =
+          LdrFunction(instance.Modules.msvcrt, 0xcff4a7ca);
     }
   }
 
   // ------ Code ------
-  Instance.Win32.system(GET_SYMBOL("start notepad.exe"));
+  instance.Win32.system(GET_SYMBOL("start notepad.exe"));
 }

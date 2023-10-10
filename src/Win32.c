@@ -7,46 +7,46 @@
 
 // NOTE: The Module hash needs to be a hash from a wide string instead of an
 // ansi string.
-SEC(text, B) PVOID LdrModulePeb(UINT_PTR hModuleHash) {
-  PLDR_DATA_TABLE_ENTRY Module = (PLDR_DATA_TABLE_ENTRY)((PPEB)PPEB_PTR)
+SEC(text, B) PVOID LdrModulePeb(UINT_PTR module_hash) {
+  PLDR_DATA_TABLE_ENTRY module = (PLDR_DATA_TABLE_ENTRY)((PPEB)PPEB_PTR)
                                      ->Ldr->InMemoryOrderModuleList.Flink;
-  PLDR_DATA_TABLE_ENTRY FirstModule = Module;
+  PLDR_DATA_TABLE_ENTRY first_module = module;
 
   do {
     DWORD ModuleHash =
-        HashString(Module->FullDllName.Buffer, Module->FullDllName.Length);
+        HashString(module->FullDllName.Buffer, module->FullDllName.Length);
 
-    if (ModuleHash == hModuleHash) return Module->Reserved2[0];
+    if (ModuleHash == module_hash) return module->Reserved2[0];
 
-    Module = (PLDR_DATA_TABLE_ENTRY)Module->Reserved1[0];
-  } while (Module && Module != FirstModule);
+    module = (PLDR_DATA_TABLE_ENTRY)module->Reserved1[0];
+  } while (module && module != first_module);
 
   return INVALID_HANDLE_VALUE;
 }
 
-SEC(text, B) PVOID LdrFunction(UINT_PTR Module, UINT_PTR FunctionHash) {
-  PIMAGE_NT_HEADERS NtHeader = NULL;
-  PIMAGE_EXPORT_DIRECTORY ExpDirectory = NULL;
-  PDWORD AddrOfFunctions = NULL;
-  PDWORD AddrOfNames = NULL;
-  PWORD AddrOfOrdinals = NULL;
-  PVOID FunctionAddr = NULL;
-  PCHAR FunctionName = NULL;
-  ANSI_STRING AnsiString = {0};
+SEC(text, B) PVOID LdrFunction(UINT_PTR module, UINT_PTR func_hash) {
+  PIMAGE_NT_HEADERS nt_header = NULL;
+  PIMAGE_EXPORT_DIRECTORY exp_directory = NULL;
+  PDWORD addr_of_funcs = NULL;
+  PDWORD addr_of_names = NULL;
+  PWORD addr_of_ordinals = NULL;
+  PVOID func_addr = NULL;
+  PCHAR func_name = NULL;
+  ANSI_STRING ansi_string = {0};
 
-  NtHeader = C_PTR(Module + ((PIMAGE_DOS_HEADER)Module)->e_lfanew);
-  ExpDirectory = C_PTR(Module + NtHeader->OptionalHeader
+  nt_header = C_PTR(module + ((PIMAGE_DOS_HEADER)module)->e_lfanew);
+  exp_directory = C_PTR(module + nt_header->OptionalHeader
                                     .DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT]
                                     .VirtualAddress);
 
-  AddrOfNames = C_PTR(Module + ExpDirectory->AddressOfNames);
-  AddrOfFunctions = C_PTR(Module + ExpDirectory->AddressOfFunctions);
-  AddrOfOrdinals = C_PTR(Module + ExpDirectory->AddressOfNameOrdinals);
+  addr_of_names = C_PTR(module + exp_directory->AddressOfNames);
+  addr_of_funcs = C_PTR(module + exp_directory->AddressOfFunctions);
+  addr_of_ordinals = C_PTR(module + exp_directory->AddressOfNameOrdinals);
 
-  for (DWORD i = 0; i < ExpDirectory->NumberOfNames; i++) {
-    FunctionName = (PCHAR)Module + AddrOfNames[i];
-    if (HashString(FunctionName, 0) == FunctionHash) {
-      return C_PTR(Module + AddrOfFunctions[AddrOfOrdinals[i]]);
+  for (DWORD i = 0; i < exp_directory->NumberOfNames; i++) {
+    func_name = (PCHAR)module + addr_of_names[i];
+    if (HashString(func_name, 0) == func_hash) {
+      return C_PTR(module + addr_of_funcs[addr_of_ordinals[i]]);
     }
   }
 }

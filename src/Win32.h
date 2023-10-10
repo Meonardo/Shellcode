@@ -2,5 +2,5 @@
 
 #include "Macros.h"
 
-PVOID LdrModulePeb(UINT_PTR hModuleHash);
-PVOID LdrFunction(UINT_PTR hModule, UINT_PTR ProcHash);
+PVOID LdrModulePeb(UINT_PTR module_hash);
+PVOID LdrFunction(UINT_PTR module, UINT_PTR proc_hash);
