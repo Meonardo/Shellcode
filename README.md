@@ -23,9 +23,15 @@
     3. load the `msvcrt` with `instance.Win32.LoadLibraryA(GET_SYMBOL("msvcrt"))` function;
     4. get the address of the target function `system` with `LdrFunction(instance.Modules.msvcrt, 0xcff4a7ca)` function;
     5. finnally, call the `system("start notepad.exe")` with `instance.Win32.system(GET_SYMBOL("start notepad.exe"))` function, please see file `entry.c` for more details;
-- Calculate the library & function hash by using `Hasher.exe "LibName" "FunctionName"`;
-  - use the `build Hasher.exe` task to build the `Hasher.exe` application;
+- Calculate the function hash by using
+  ```cmd
+  hasher.exe "system" "LoadLibraryA"
+  // result:
+  // [+] Hashed SYSTEM ==> 0xcff4a7ca
+  // [+] Hashed LOADLIBRARYA ==> 0xb7072fdb
+  ```
+  - use the `build hasher.exe` task to build the `hasher.exe` application;
 - Get the shellcode by using `build PE` task;
-  - the shellcode will be saved in `out\Shellcode.bin` file;
+  - the shellcode will be saved in `out\shellcode.bin` file;
 - Test the shellcode
   - check the `examples` folder for shellcode injection examples;
