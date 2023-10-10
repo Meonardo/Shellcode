@@ -1,7 +1,4 @@
-
-#include <windows.h>
-
-#include "Macros.h"
+#include "macros.h"
 
 UINT_PTR GetRIP(VOID);
 

@@ -1,5 +1,5 @@
-#include "Core.h"
-#include "Win32.h"
+#include "core.h"
+#include "win32.h"
 
 SEC(text, B) VOID Entry(VOID) {
   INSTANCE instance = {0};

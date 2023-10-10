@@ -1,5 +1,5 @@
-#include "Macros.h"
-#include "Utils.h"
+#include "macros.h"
+#include "utils.h"
 
 SEC(text, B) UINT_PTR HashString(LPVOID string, UINT_PTR length) {
   ULONG Hash = 5381;

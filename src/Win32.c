@@ -1,9 +1,9 @@
-#include "Win32.h"
+#include "win32.h"
 
 #include <winternl.h>
 
-#include "Macros.h"
-#include "Utils.h"
+#include "macros.h"
+#include "utils.h"
 
 // NOTE: The Module hash needs to be a hash from a wide string instead of an
 // ansi string.
