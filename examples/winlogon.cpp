@@ -11,7 +11,7 @@
 /// administrator(winlogon.exe running as SYSTEM)
 
 #define MAX_PATH_LEN 512
-#define PE_FILE L"Shellcode.bin"
+#define PE_FILE L"shellcode.bin"
 
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "Shlwapi.lib")
@@ -164,7 +164,7 @@ int main(int argc, char* argv[]) {
 
   Inject(shellcode, sizeof(shellcode));
 #else
-  // load from `Shellcode.bin` file
+  // load from `shellcode.bin` file
   TCHAR buffer[MAX_PATH_LEN] = {0};
   GetModuleFileName(NULL, buffer, MAX_PATH_LEN);
   PathRemoveFileSpec(buffer);
@@ -176,7 +176,7 @@ int main(int argc, char* argv[]) {
   uint8_t* shellcode = LoadBinaryFile(buffer, &file_size);
 
   if (shellcode == NULL) {
-    printf("load shellcode from file failed! exit program\n");
+    printf("load shellcode from bin file failed!\n exiting program...\n");
     return -1;
   }
 
