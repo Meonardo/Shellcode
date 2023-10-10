@@ -12,11 +12,11 @@ if __name__ in '__main__':
 
         pe_src_file = option.f
         if pe_src_file is None or pe_src_file == '':
-            pe_src_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'bin', 'shellcode.exe')
+            pe_src_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'out', 'shellcode.exe')
 
         output_file = option.o
         if output_file is None or output_file == '':
-            output_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'bin', 'shellcode.bin')
+            output_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'out', 'shellcode.bin')
 
         PeExe = pefile.PE(pe_src_file)
         PeSec = PeExe.sections[0].get_data()

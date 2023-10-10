@@ -2,7 +2,7 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "build Hasher.exe",
+            "label": "build hasher.exe",
             "command": "build-hasher.bat",
             "args": [
                 "${workspaceFolder}\\scripts",
@@ -25,7 +25,7 @@
         {
             "type": "cppbuild",
             "label": "build PE",
-            "command": "build.bat",
+            "command": "build-pe.bat",
             "args": [
                 "${workspaceFolder}",
                 "${workspaceFolder}\\out"

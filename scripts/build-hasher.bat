@@ -8,6 +8,6 @@ call "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Bu
 
 cd /D %ROOT_DIR%
 
-cl.exe %ROOT_DIR%\Hasher.c ^
-/Fe%OUTPUT_DIR%\Hasher.exe ^
+cl.exe %ROOT_DIR%\hasher.c ^
+/Fe%OUTPUT_DIR%\hasher.exe ^
 /DUNICODE /D_UNICODE /DWIN32 /EHsc /nologo

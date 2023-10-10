@@ -16,11 +16,11 @@ gcc.exe ^
     %ROOT_DIR%\src\Win32.c ^
     %ROOT_DIR%\src\Entry.c ^
     %OUTPUT_DIR%\asm.x64.o ^
-    -o %OUTPUT_DIR%\Shellcode.exe ^
+    -o %OUTPUT_DIR%\shellcode.exe ^
     -Os -fno-asynchronous-unwind-tables -nostdlib ^
     -fno-ident -fpack-struct=8 -falign-functions=1 ^
     -s -ffunction-sections -falign-jumps=1 -w ^
-    -falign-labels=1 -fPIC -Wl,-T%ROOT_DIR%\scripts\Linker.ld ^
+    -falign-labels=1 -fPIC -Wl,-T%ROOT_DIR%\scripts\linker.ld ^
     -Wl,-s,--no-seh,--enable-stdcall-fixup ^
     -I%src% ^
     -masm=intel
