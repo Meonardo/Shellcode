@@ -3,22 +3,22 @@
 
 SEC(text, B) UINT_PTR HashString(LPVOID string, UINT_PTR length) {
   ULONG Hash = 5381;
-  PUCHAR Ptr = string;
+  PUCHAR ptr = string;
 
   do {
-    UCHAR character = *Ptr;
+    UCHAR character = *ptr;
 
     if (!length) {
-      if (!*Ptr) break;
+      if (!*ptr) break;
     } else {
-      if ((ULONG)(Ptr - (PUCHAR)string) >= length) break;
-      if (!*Ptr) ++Ptr;
+      if ((ULONG)(ptr - (PUCHAR)string) >= length) break;
+      if (!*ptr) ++ptr;
     }
 
     if (character >= 'a') character -= 0x20;
 
     Hash = ((Hash << 5) + Hash) + character;
-    ++Ptr;
+    ++ptr;
   } while (TRUE);
 
   return Hash;
