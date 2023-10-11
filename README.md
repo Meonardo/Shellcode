@@ -7,6 +7,7 @@
 ### Status
 - [x] add Visual Studio Code tasks to build & extract shellcode;
 - [x] add example to use the shellcode;
+- [ ] using MSVC toolset instead GNU;
 
 ### Requirements
 - GNU toolset, please see [MinGW](https://www.mingw-w64.org/downloads/);
